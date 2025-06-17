@@ -5,6 +5,7 @@ namespace customiesdevs\customies\block;
 use customiesdevs\customies\block\component\BlockComponent;
 use customiesdevs\customies\block\component\BreathabilityComponent;
 use customiesdevs\customies\block\component\CollisionBoxComponent;
+use customiesdevs\customies\block\component\DestroyTimeComponent;
 use customiesdevs\customies\block\component\DestructibleByExplosionComponent;
 use customiesdevs\customies\block\component\DestructibleByMiningComponent;
 use customiesdevs\customies\block\component\DisplayNameComponent;
@@ -48,7 +49,6 @@ trait BlockComponentsTrait {
 		$this->addComponent(new DestructibleByMiningComponent($this->getBreakInfo()->getHardness()));
 		$this->addComponent(new LightEmissionComponent($this->getLightLevel()));
 		$this->addComponent(new LightDampeningComponent($this->getLightFilter()));
-		$this->addComponent(new FrictionComponent($this->getFrictionFactor()));
 		if ($useGeometry){
 			$this->addComponent(new GeometryComponent());
 		}
@@ -60,7 +60,7 @@ trait BlockComponentsTrait {
 			$this->addComponent(new FlammableComponent($this->getFlameEncouragement()));
 		}
 		if($this->getName() !== "Unknown") {
-			$this->addComponent(new DisplayNameComponent($this->getName()));
+			$this->addComponent(new DisplayNameComponent(strtolower($this->getName())));
 		}
 		$this->addComponent(new MaterialInstancesComponent([new Material(Material::TARGET_ALL, $texture, Material::RENDER_METHOD_OPAQUE)]));
 	}

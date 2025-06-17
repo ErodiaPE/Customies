@@ -30,7 +30,7 @@ class GeometryComponent implements BlockComponent {
 	}
 
 	public function addBoneVisibility(string $boneName, bool|string $visibility): self {
-		if(is_string($visibility) && !is_bool($visibility)){
+		if(is_string($visibility)){
 			$this->boneVisibility->setTag($boneName, CompoundTag::create()
 				->setString("expression", $visibility)
 				->setShort("version", 12));

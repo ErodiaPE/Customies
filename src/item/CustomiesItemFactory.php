@@ -8,6 +8,7 @@ use pocketmine\block\Block;
 use pocketmine\data\bedrock\item\BlockItemIdMap;
 use pocketmine\data\bedrock\item\SavedItemData;
 use pocketmine\inventory\CreativeCategory;
+use pocketmine\inventory\CreativeGroup;
 use pocketmine\inventory\CreativeInventory;
 use pocketmine\item\Item;
 use pocketmine\item\ItemIdentifier;
@@ -50,12 +51,19 @@ final class CustomiesItemFactory {
 		return array_values($this->itemTableEntries);
 	}
 
-	/**
-	 * Registers the item to the item factory and assigns it an ID. It also updates the required mappings and stores the
-	 * item components if present.
-	 * @phpstan-param class-string $className
-	 */
-	public function registerItem(string $className, string $identifier, string $name, ?CreativeCategory $category = null): void {
+    /**
+     *  Registers the item to the item factory and assigns it an ID. It also updates the required mappings and stores the
+     *  item components if present.
+     *
+     * @param string $className
+     * @param string $identifier
+     * @param string $name
+     * @param CreativeCategory|null $category
+     * @param CreativeGroup|null $group
+     * @return Item
+     */
+	public function registerItem(string $className, string $identifier, string $name, ?CreativeCategory $category = null, CreativeGroup $group = null): Item
+    {
 		if($className !== Item::class) {
 			Utils::testValidInstance($className, Item::class);
 		}
@@ -77,9 +85,12 @@ final class CustomiesItemFactory {
 		if($category !== null){
 			CreativeInventory::getInstance()->add(
 				$item,
-				$category
+				$category,
+                $group,
 			);
 		}
+
+        return $item;
 	}
 
 	/**

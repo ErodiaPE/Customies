@@ -11,8 +11,10 @@ use customiesdevs\customies\item\CreativeInventoryInfo;
 use customiesdevs\customies\item\CustomiesItemFactory;
 use customiesdevs\customies\task\AsyncRegisterBlocksTask;
 use customiesdevs\customies\util\NBT;
+use Erodia\Container\Block\BlockFactory;
 use InvalidArgumentException;
 use pocketmine\block\Block;
+use pocketmine\block\BlockTypeIds;
 use pocketmine\block\RuntimeBlockStateRegistry;
 use pocketmine\data\bedrock\block\BlockStateData;
 use pocketmine\data\bedrock\block\convert\BlockStateReader;
@@ -40,7 +42,7 @@ final class CustomiesBlockFactory {
 	 * @var Closure[]
 	 * @phpstan-var array<string, array{(Closure(int): Block), (Closure(BlockStateWriter): Block), (Closure(Block): BlockStateReader)}>
 	 */
-	private array $blockFuncs = [];
+	public array $blockFuncs = [];
 	/** @var BlockPaletteEntry[] */
 	private array $blockPaletteEntries = [];
 	/** @var array<string, Block> */
@@ -84,8 +86,9 @@ final class CustomiesBlockFactory {
 	 * @phpstan-param null|(Closure(BlockStateWriter): Block) $serializer
 	 * @phpstan-param null|(Closure(Block): BlockStateReader) $deserializer
 	 */
-	public function registerBlock(Closure $blockFunc, string $identifier, ?CreativeInventoryInfo $creativeInfo = null, ?Closure $serializer = null, ?Closure $deserializer = null): void {
-		$block = $blockFunc();
+	public function registerBlock(Closure $blockFunc, string $identifier, ?CreativeInventoryInfo $creativeInfo = null, ?Closure $serializer = null, ?Closure $deserializer = null): Block|BlockComponents
+    {
+		$block = $blockFunc(BlockTypeIds::newId());
 		if(!$block instanceof Block) {
 			throw new InvalidArgumentException("Class returned from closure is not a Block");
 		}
@@ -194,5 +197,9 @@ final class CustomiesBlockFactory {
 					->setInt("block_id", 10000 + $i));
 			$this->blockPaletteEntries[$i] = new BlockPaletteEntry($entry->getName(), new CacheableNbt($root));
 		}
+
+        BlockFactory::registryRegister($block->getName(), $block);
+
+        return $block;
 	}
 }
