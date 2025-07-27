@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class StackedByDataComponent implements ItemComponent {
+final class StackedByDataComponent extends PropertyComponent
+{
 
 	private bool $stackedByData;
 
@@ -17,7 +18,7 @@ final class StackedByDataComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "stacked_by_data";
+		return "minecraft:stacked_by_data";
 	}
 
 	public function getValue(): bool {

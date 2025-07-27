@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class IconComponent implements ItemComponent {
+final class IconComponent extends PropertyComponent
+{
 
 	private string $default_texture;
 	private string $dyed_texture;

@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class EnchantableSlotComponent implements ItemComponent {
+final class EnchantableSlotComponent extends PropertyComponent
+{
 
 	public const SLOT_ALL = "all";
 	public const SLOT_BOOTS = "armor_feet";
@@ -35,7 +36,7 @@ final class EnchantableSlotComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "enchantable_slot";
+		return "minecraft:enchantable_slot";
 	}
 
 	public function getValue(): string {

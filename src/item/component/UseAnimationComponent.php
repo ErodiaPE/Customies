@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class UseAnimationComponent implements ItemComponent {
+final class UseAnimationComponent extends PropertyComponent
+{
 
 	public const ANIMATION_NONE = 0;
 	public const ANIMATION_EAT = 1;
@@ -27,7 +28,7 @@ final class UseAnimationComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "use_animation";
+		return "minecraft:use_animation";
 	}
 
 	public function getValue(): int {

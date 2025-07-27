@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class ShouldDespawnComponent implements ItemComponent {
+final class ShouldDespawnComponent extends PropertyComponent
+{
 
 	private bool $shouldDespawn;
 
@@ -16,7 +17,7 @@ final class ShouldDespawnComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "should_despawn";
+		return "minecraft:should_despawn";
 	}
 
 	public function getValue(): bool {

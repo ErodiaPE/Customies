@@ -20,6 +20,10 @@ class CraftFactory
 {
     use SingletonTrait;
 
+    public function __construct()
+    {
+    }
+
     /**
      * @param string $path
      * @return void

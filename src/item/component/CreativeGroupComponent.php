@@ -5,7 +5,8 @@ namespace customiesdevs\customies\item\component;
 
 use customiesdevs\customies\item\CreativeInventoryInfo;
 
-final class CreativeGroupComponent implements ItemComponent {
+final class CreativeGroupComponent extends PropertyComponent
+{
 
 	private CreativeInventoryInfo $creativeInfo;
 
@@ -14,7 +15,7 @@ final class CreativeGroupComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "creative_group";
+		return "minecraft:creative_group";
 	}
 
 	public function getValue(): string {

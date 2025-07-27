@@ -35,7 +35,7 @@ final class Permutation {
     }
 
 	/**
-	 * Returns the permutation with the provided component added to the current list of components.
+	 * Returns the permutation with the provided component added to the current list of Components.
 	 */
 	public function withComponent(string $component, mixed $value) : self {
 		$this->components->setTag($component, NBT::getTagType($value));
@@ -58,6 +58,6 @@ final class Permutation {
 	public function toNBT(): CompoundTag {
 		return CompoundTag::create()
 			->setString("condition", $this->condition)
-			->setTag("components", $this->components);
+			->setTag("Components", $this->components);
 	}
 }

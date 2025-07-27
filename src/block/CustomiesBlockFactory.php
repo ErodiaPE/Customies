@@ -164,7 +164,7 @@ final class CustomiesBlockFactory {
 			->setString("category", $creativeInfo->getCategory())
 			->setString("group", $creativeInfo->getGroup()));
 		$propertiesTag
-			->setTag("components",
+			->setTag("Components",
 				$components->setTag("minecraft:creative_category", CompoundTag::create()
 					->setString("category", $creativeInfo->getCategory())
 					->setString("group", $creativeInfo->getGroup())))
@@ -188,9 +188,20 @@ final class CustomiesBlockFactory {
 
 		// 1.20.60 added a new "block_id" field which depends on the order of the block palette entries. Every time we
 		// insert a new block, we need to re-sort the block palette entries to keep in sync with the client.
-		usort($this->blockPaletteEntries, static function(BlockPaletteEntry $a, BlockPaletteEntry $b): int {
-			return strcmp(hash("fnv164", $a->getName()), hash("fnv164", $b->getName()));
-		});
+        $entriesWithIndex = [];
+        foreach ($this->blockPaletteEntries as $index => $entry) {
+            $entriesWithIndex[] = ['entry' => $entry, 'index' => $index];
+        }
+
+        usort($entriesWithIndex, static function($a, $b): int {
+            $hashA = hash("fnv164", $a['entry']->getName());
+            $hashB = hash("fnv164", $b['entry']->getName());
+            $cmp = strcmp($hashA, $hashB);
+            if ($cmp === 0) {
+                return $a['index'] <=> $b['index']; // Ordre stable
+            }
+            return $cmp;
+        });
 		foreach($this->blockPaletteEntries as $i => $entry) {
 			$root = $entry->getStates()->getRoot()
 				->setTag("vanilla_block_data", CompoundTag::create()

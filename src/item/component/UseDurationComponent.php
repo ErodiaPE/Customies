@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class UseDurationComponent implements ItemComponent {
+final class UseDurationComponent extends PropertyComponent
+{
 
 	private int $duration;
 
@@ -16,7 +17,7 @@ final class UseDurationComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "use_duration";
+		return "minecraft:use_duration";
 	}
 
 	public function getValue(): int {

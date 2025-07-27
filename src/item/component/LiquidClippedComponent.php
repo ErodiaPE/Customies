@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class LiquidClippedComponent implements ItemComponent {
+final class LiquidClippedComponent extends PropertyComponent
+{
 
 	private bool $liquidClipped;
 
@@ -16,7 +17,7 @@ final class LiquidClippedComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "liquid_clipped";
+		return "minecraft:liquid_clipped";
 	}
 
 	public function getValue(): bool {

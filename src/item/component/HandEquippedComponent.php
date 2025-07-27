@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class HandEquippedComponent implements ItemComponent {
+final class HandEquippedComponent extends PropertyComponent
+{
 
 	private bool $handEquipped;
 
@@ -16,7 +17,7 @@ final class HandEquippedComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "hand_equipped";
+		return "minecraft:hand_equipped";
 	}
 
 	public function getValue(): bool {

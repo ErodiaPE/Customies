@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class EnchantableValueComponent implements ItemComponent {
+final class EnchantableValueComponent extends PropertyComponent
+{
 
 	// Armor Enchantability
 	public const ARMOR_LEATHER = 15;
@@ -34,7 +35,7 @@ final class EnchantableValueComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "enchantable_value";
+		return "minecraft:enchantable_value";
 	}
 
 	public function getValue(): int {

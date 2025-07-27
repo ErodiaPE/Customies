@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class HoverTextColorComponent implements ItemComponent {
+final class HoverTextColorComponent extends PropertyComponent
+{
 
 	private string $hoverTextColor;
 
@@ -17,7 +18,7 @@ final class HoverTextColorComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "hover_text_color";
+		return "minecraft:hover_text_color";
 	}
 
 	public function getValue(): string {

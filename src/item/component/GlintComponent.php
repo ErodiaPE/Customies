@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class GlintComponent implements ItemComponent {
+final class GlintComponent extends PropertyComponent
+{
 
 	private bool $glint;
 
@@ -16,7 +17,7 @@ final class GlintComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "foil";
+		return "minecraft:foil";
 	}
 
 	public function getValue(): bool {

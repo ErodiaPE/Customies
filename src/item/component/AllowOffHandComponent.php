@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class AllowOffHandComponent implements ItemComponent {
+final class AllowOffHandComponent extends PropertyComponent
+{
 
 	private bool $offHand;
 
@@ -16,7 +17,7 @@ final class AllowOffHandComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "allow_off_hand";
+		return "minecraft:allow_off_hand";
 	}
 
 	public function getValue(): bool {

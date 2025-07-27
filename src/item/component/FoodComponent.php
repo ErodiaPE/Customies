@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class FoodComponent implements ItemComponent {
+final class FoodComponent extends PropertyComponent
+{
 
 	private bool $canAlwaysEat;
 	private int $nutrition;

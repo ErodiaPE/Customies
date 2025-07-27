@@ -10,7 +10,6 @@ use customiesdevs\customies\block\component\DestructibleByExplosionComponent;
 use customiesdevs\customies\block\component\DestructibleByMiningComponent;
 use customiesdevs\customies\block\component\DisplayNameComponent;
 use customiesdevs\customies\block\component\FlammableComponent;
-use customiesdevs\customies\block\component\FrictionComponent;
 use customiesdevs\customies\block\component\GeometryComponent;
 use customiesdevs\customies\block\component\LightDampeningComponent;
 use customiesdevs\customies\block\component\LightEmissionComponent;
@@ -38,7 +37,7 @@ trait BlockComponentsTrait {
 	}
 
 	/** 
-	 * Initialises a block's components with default values inferred from existing properties.
+	 * Initialises a block's Components with default values inferred from existing properties.
 	 * @todo Work on more default values depending on different pm classes similar to items
 	 * @param string $texture Texture name for the material.
 	 * @param bool $useGeometry Check if geometry component should be used, default is set to `true`
@@ -46,7 +45,7 @@ trait BlockComponentsTrait {
 	protected function initComponent(string $texture, bool $useGeometry = true): void {
 		$this->addComponent(new BreathabilityComponent());
 		$this->addComponent(new DestructibleByExplosionComponent());
-		$this->addComponent(new DestructibleByMiningComponent($this->getBreakInfo()->getHardness()));
+		$this->addComponent(new DestructibleByMiningComponent(10000));
 		$this->addComponent(new LightEmissionComponent($this->getLightLevel()));
 		$this->addComponent(new LightDampeningComponent($this->getLightFilter()));
 		if ($useGeometry){

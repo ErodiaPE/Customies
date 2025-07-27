@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class DamageComponent implements ItemComponent {
+final class DamageComponent extends PropertyComponent
+{
 
 	private int $damage;
 
@@ -16,7 +17,7 @@ final class DamageComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "damage";
+		return "minecraft:damage";
 	}
 
 	public function getValue(): int {

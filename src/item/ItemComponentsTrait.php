@@ -36,69 +36,69 @@ use RuntimeException;
 
 trait ItemComponentsTrait {
 
-	/** @var ItemComponent[] */
-	private array $components;
+    /** @var ItemComponent[] */
+    private array $components;
 
-	public function addComponent(ItemComponent $component): void {
-		$this->components[$component->getName()] = $component;
-	}
+    public function addComponent(ItemComponent $component): void {
+        $this->components[$component->getName()] = $component;
+    }
 
-	public function hasComponent(string $name): bool {
-		return isset($this->components[$name]);
-	}
+    public function hasComponent(string $name): bool {
+        return isset($this->components[$name]);
+    }
 
-	public function getComponents(): CompoundTag {
-		$components = CompoundTag::create();
-		$properties = CompoundTag::create();
-		foreach($this->components as $component){
-			$tag = NBT::getTagType($component->getValue());
-			if($tag === null) {
-				throw new RuntimeException("Failed to get tag type for component " . $component->getName());
-			}
-			if($component->isProperty()) {
-				$properties->setTag($component->getName(), $tag);
-				continue;
-			}
-			$components->setTag($component->getName(), $tag);
-		}
-		$components->setTag("item_properties", $properties);
-		return CompoundTag::create()
-			->setTag("components", $components);
-	}
+    public function getComponents(): CompoundTag {
+        $components = CompoundTag::create();
+        $properties = CompoundTag::create();
+        foreach($this->components as $component){
+            $tag = NBT::getTagType($component->getValue());
+            if($tag === null) {
+                throw new RuntimeException("Failed to get tag type for component " . $component->getName());
+            }
+            if($component->isProperty()) {
+                $properties->setTag($component->getName(), $tag);
+                continue;
+            }
+            $components->setTag($component->getName(), $tag);
+        }
+        $components->setTag("item_properties", $properties);
+        return CompoundTag::create()
+            ->setTag("components", $components);
+    }
 
 	/**
-	 * Initializes the item with default components that are required for the item to function correctly.
+	 * Initializes the item with default Components that are required for the item to function correctly.
 	 */
 	protected function initComponent(string $texture, ?CreativeInventoryInfo $creativeInfo = null): void {
-		$creativeInfo ??= CreativeInventoryInfo::DEFAULT();
-		$this->addComponent(new CreativeCategoryComponent($creativeInfo));
-		$this->addComponent(new CreativeGroupComponent($creativeInfo));
-		$this->addComponent(new CanDestroyInCreativeComponent());
-		$this->addComponent(new IconComponent($texture));
-		$this->addComponent(new MaxStackSizeComponent($this->getMaxStackSize()));
+        $creativeInfo ??= CreativeInventoryInfo::DEFAULT();
+        $this->addComponent(new CreativeCategoryComponent($creativeInfo));
+        $this->addComponent(new CreativeGroupComponent($creativeInfo));
+        $this->addComponent(new CanDestroyInCreativeComponent());
+        $this->addComponent(new IconComponent($texture));
+        $this->addComponent(new MaxStackSizeComponent($this->getMaxStackSize()));
 
-		if($this instanceof Armor) {
-			$slot = match ($this->getArmorSlot()) {
-				ArmorInventory::SLOT_HEAD => WearableComponent::SLOT_ARMOR_HEAD,
-				ArmorInventory::SLOT_CHEST => WearableComponent::SLOT_ARMOR_CHEST,
-				ArmorInventory::SLOT_LEGS => WearableComponent::SLOT_ARMOR_LEGS,
-				ArmorInventory::SLOT_FEET => WearableComponent::SLOT_ARMOR_FEET,
-				default => WearableComponent::SLOT_ARMOR
-			};
-			$this->addComponent(new WearableComponent($slot, $this->getDefensePoints()));
-		}
+        if($this instanceof Armor) {
+            $slot = match ($this->getArmorSlot()) {
+                ArmorInventory::SLOT_HEAD => WearableComponent::SLOT_ARMOR_HEAD,
+                ArmorInventory::SLOT_CHEST => WearableComponent::SLOT_ARMOR_CHEST,
+                ArmorInventory::SLOT_LEGS => WearableComponent::SLOT_ARMOR_LEGS,
+                ArmorInventory::SLOT_FEET => WearableComponent::SLOT_ARMOR_FEET,
+                default => WearableComponent::SLOT_ARMOR
+            };
+            $this->addComponent(new WearableComponent($slot, $this->getDefensePoints()));
+        }
 
-		if($this instanceof Consumable) {
-			if(($food = $this instanceof Food)) {
-				$this->addComponent(new FoodComponent(!$this->requiresHunger()));
-			}
-			$this->addComponent(new UseAnimationComponent($food ? UseAnimationComponent::ANIMATION_EAT : UseAnimationComponent::ANIMATION_DRINK));
-			$this->setUseDuration(20);
-		}
+        if($this instanceof Consumable) {
+            if(($food = $this instanceof Food)) {
+                $this->addComponent(new FoodComponent(!$this->requiresHunger()));
+            }
+            $this->addComponent(new UseAnimationComponent($food ? UseAnimationComponent::ANIMATION_EAT : UseAnimationComponent::ANIMATION_DRINK));
+            $this->setUseDuration(20);
+        }
 
-		if($this instanceof Durable) {
-			$this->addComponent(new DurabilityComponent($this->getMaxDurability()));
-		}
+        if($this instanceof Durable) {
+            $this->addComponent(new DurabilityComponent($this->getMaxDurability()));
+        }
 
 		if($this instanceof ProjectileItem) {
 			$this->addComponent(new ProjectileComponent(1.25, "projectile"));
@@ -106,7 +106,7 @@ trait ItemComponentsTrait {
 		}
 
 		if($this->getName() !== "Unknown") {
-			$this->addComponent(new DisplayNameComponent($this->getName()));
+			$this->addComponent(new DisplayNameComponent("item.{$texture}.name"));
 		}
 
 		if($this->getFuelTime() > 0) {

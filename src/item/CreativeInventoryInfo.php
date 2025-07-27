@@ -5,7 +5,7 @@ namespace customiesdevs\customies\item;
 final class CreativeInventoryInfo {
 
 	const CATEGORY_ALL = "all";
-	const CATEGORY_COMMANDS = "commands";
+	const CATEGORY_COMMANDS = "command";
 	const CATEGORY_CONSTRUCTION = "construction";
 	const CATEGORY_EQUIPMENT = "equipment";
 	const CATEGORY_ITEMS = "items";

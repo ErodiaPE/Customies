@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class CanDestroyInCreativeComponent implements ItemComponent {
+final class CanDestroyInCreativeComponent extends PropertyComponent
+{
 
 	private bool $canDestroyInCreative;
 
@@ -16,7 +17,7 @@ final class CanDestroyInCreativeComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "can_destroy_in_creative";
+		return "minecraft:can_destroy_in_creative";
 	}
 
 	public function getValue(): bool {

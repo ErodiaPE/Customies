@@ -17,13 +17,13 @@ interface Permutable {
 
 	/**
 	 * Returns an array of the permutations the block has. They contain molang queries that can use the block properties
-	 * to control the components based on different states server-side.
+	 * to control the Components based on different states server-side.
 	 * @return Permutation[]
 	 */
 	public function getPermutations(): array;
 
 	/**
-	 * Returns an array of the current block property values in the same order as those in getBlockProperties(). It is
+	 * Returns an array of the current block Property values in the same order as those in getBlockProperties(). It is
 	 * used to convert the current properties in to a meta value that can be stored on disk in the world.
 	 * @return mixed[]
 	 */

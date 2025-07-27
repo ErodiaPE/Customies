@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace customiesdevs\customies\item\component;
 
-final class MaxStackSizeComponent implements ItemComponent {
+final class MaxStackSizeComponent extends PropertyComponent
+{
 
 	private int $maxStackSize;
 
@@ -16,7 +17,7 @@ final class MaxStackSizeComponent implements ItemComponent {
 	}
 
 	public function getName(): string {
-		return "max_stack_size";
+		return "minecraft:max_stack_size";
 	}
 
 	public function getValue(): int {
@@ -24,6 +25,6 @@ final class MaxStackSizeComponent implements ItemComponent {
 	}
 
 	public function isProperty(): bool {
-		return true;
+		return false;
 	}
 }
