@@ -17,7 +17,7 @@ final class DamageComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:damage";
+		return "damage";
 	}
 
 	public function getValue(): int {

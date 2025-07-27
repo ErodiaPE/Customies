@@ -36,7 +36,7 @@ final class EnchantableSlotComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:enchantable_slot";
+		return "enchantable_slot";
 	}
 
 	public function getValue(): string {

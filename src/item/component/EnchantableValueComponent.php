@@ -35,7 +35,7 @@ final class EnchantableValueComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:enchantable_value";
+		return "enchantable_value";
 	}
 
 	public function getValue(): int {

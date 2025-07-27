@@ -17,7 +17,7 @@ final class LiquidClippedComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:liquid_clipped";
+		return "liquid_clipped";
 	}
 
 	public function getValue(): bool {

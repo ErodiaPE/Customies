@@ -48,7 +48,13 @@ trait ItemNonComponentsTrait
             if ($tag === null) {
                 throw new RuntimeException("Failed to get tag type for component " . $component->getName());
             }
-            $components->setTag($component->getName(), $tag);
+
+            $name = $component->getName();
+            if(!str_contains($name, "minecraft:")) {
+                $name = "minecraft:" . $name;
+            }
+
+            $components->setTag($name, $tag);
         }
         return CompoundTag::create()
             ->setTag("components", $components);
@@ -66,7 +72,7 @@ trait ItemNonComponentsTrait
         $creativeInfo ??= CreativeInventoryInfo::DEFAULT();
         $this->addProperty(new CreativeCategoryComponent($creativeInfo));
         $this->addProperty(new CreativeGroupComponent($creativeInfo));
-        $this->addProperty(new CanDestroyInCreativeComponent());
+        $this->addProperty(new CanDestroyInCreativeComponent(!$this instanceof Sword));
         $this->addProperty(new MaxStackSizeComponent($this->getMaxStackSize()));
 
         if ($this instanceof Consumable) {
@@ -77,15 +83,12 @@ trait ItemNonComponentsTrait
             $this->setUseDuration(20);
         }
 
-        if ($this->getAttackPoints() > 0) {
+        if ($this->getAttackPoints() > 1) {
             $this->addProperty(new DamageComponent($this->getAttackPoints() - 1));
         }
 
         if ($this instanceof Tool) {
             $this->addProperty(new HandEquippedComponent());
-            if ($this instanceof Sword) {
-                $this->addProperty(new CanDestroyInCreativeComponent(false));
-            }
         }
 
         return $this;

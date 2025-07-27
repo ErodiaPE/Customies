@@ -17,7 +17,7 @@ final class HandEquippedComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:hand_equipped";
+		return "hand_equipped";
 	}
 
 	public function getValue(): bool {

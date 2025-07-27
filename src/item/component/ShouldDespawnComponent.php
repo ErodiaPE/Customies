@@ -17,7 +17,7 @@ final class ShouldDespawnComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:should_despawn";
+		return "should_despawn";
 	}
 
 	public function getValue(): bool {

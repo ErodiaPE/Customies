@@ -18,7 +18,7 @@ final class StackedByDataComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:stacked_by_data";
+		return "stacked_by_data";
 	}
 
 	public function getValue(): bool {

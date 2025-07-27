@@ -17,7 +17,7 @@ final class MaxStackSizeComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:max_stack_size";
+		return "max_stack_size";
 	}
 
 	public function getValue(): int {
@@ -25,6 +25,6 @@ final class MaxStackSizeComponent extends PropertyComponent
 	}
 
 	public function isProperty(): bool {
-		return false;
+		return true;
 	}
 }

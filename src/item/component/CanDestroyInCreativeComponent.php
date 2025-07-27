@@ -17,7 +17,7 @@ final class CanDestroyInCreativeComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:can_destroy_in_creative";
+		return "can_destroy_in_creative";
 	}
 
 	public function getValue(): bool {

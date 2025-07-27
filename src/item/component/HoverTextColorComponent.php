@@ -18,7 +18,7 @@ final class HoverTextColorComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:hover_text_color";
+		return "hover_text_color";
 	}
 
 	public function getValue(): string {

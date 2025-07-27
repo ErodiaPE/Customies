@@ -17,7 +17,7 @@ final class UseDurationComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:use_duration";
+		return "use_duration";
 	}
 
 	public function getValue(): int {

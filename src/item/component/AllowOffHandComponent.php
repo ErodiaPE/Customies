@@ -17,7 +17,7 @@ final class AllowOffHandComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:allow_off_hand";
+		return "allow_off_hand";
 	}
 
 	public function getValue(): bool {

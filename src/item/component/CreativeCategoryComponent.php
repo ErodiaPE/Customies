@@ -15,7 +15,7 @@ final class CreativeCategoryComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:creative_category";
+		return "creative_category";
 	}
 
 	public function getValue(): int {

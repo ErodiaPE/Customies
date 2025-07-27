@@ -83,15 +83,13 @@ final class CustomiesItemFactory
         GlobalItemDataHandlers::getDeserializer()->map($identifier, fn() => clone $item);
         GlobalItemDataHandlers::getSerializer()->map($item, fn() => new SavedItemData($identifier));
 
-        StringToItemParser::getInstance()->register($identifier, fn() => clone $item);
+        StringToItemParser::getInstance()->override($identifier, fn() => clone $item);
 
-        $componentBased = $item instanceof ItemComponents;
         if ($nonComponentBased = $item instanceof ItemNonComponents) {
             $item->buildProperties();
         }
-
         $nbt = match (true) {
-            $componentBased => $item->getComponents()
+            $componentBased = $item instanceof ItemComponents => $item->getComponents()
                 ->setInt("id", $itemId)
                 ->setString("name", $identifier),
             $nonComponentBased => $item->getProperties(),
@@ -116,48 +114,6 @@ final class CustomiesItemFactory
         );
 
         return $item;
-    }
-
-    /**
-     * @param string $className
-     * @param string $identifier
-     * @param string $name
-     * @param int $typeId
-     * @return void
-     */
-    public function overwriteVanillaComponents(
-        string $className,
-        string $identifier,
-        string $name,
-        int    $typeId,
-    ): void
-    {
-        $item = new $className(new ItemIdentifier($typeId), $name);
-        StringToItemParser::getInstance()->override($identifier, fn() => clone $item);
-
-        $componentBased = $item instanceof ItemComponents;
-        if ($nonComponentBased = $item instanceof ItemNonComponents) {
-            $item->buildProperties();
-        }
-
-        $nbt = match (true) {
-            $componentBased => $item->getComponents()
-                ->setInt("id", $typeId)
-                ->setString("name", $identifier),
-            $nonComponentBased => $item->getProperties(),
-            default => CompoundTag::create()
-        };
-
-        $entry = new ItemTypeEntry(
-            $identifier,
-            $typeId,
-            $componentBased,
-            $componentBased ? 1 : 0,
-            new CacheableNbt($nbt)
-        );
-
-        $this->itemTableEntries[$identifier] = $entry;
-        $this->registerCustomItemMapping($identifier, $typeId, $entry);
     }
 
     /**

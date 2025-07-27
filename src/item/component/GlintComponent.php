@@ -17,7 +17,7 @@ final class GlintComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:foil";
+		return "foil";
 	}
 
 	public function getValue(): bool {

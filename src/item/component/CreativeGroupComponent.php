@@ -15,7 +15,7 @@ final class CreativeGroupComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:creative_group";
+		return "creative_group";
 	}
 
 	public function getValue(): string {

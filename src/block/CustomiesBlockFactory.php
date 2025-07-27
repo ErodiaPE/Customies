@@ -164,7 +164,7 @@ final class CustomiesBlockFactory {
 			->setString("category", $creativeInfo->getCategory())
 			->setString("group", $creativeInfo->getGroup()));
 		$propertiesTag
-			->setTag("Components",
+			->setTag("components",
 				$components->setTag("minecraft:creative_category", CompoundTag::create()
 					->setString("category", $creativeInfo->getCategory())
 					->setString("group", $creativeInfo->getGroup())))

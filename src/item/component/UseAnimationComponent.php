@@ -28,7 +28,7 @@ final class UseAnimationComponent extends PropertyComponent
 	}
 
 	public function getName(): string {
-		return "minecraft:use_animation";
+		return "use_animation";
 	}
 
 	public function getValue(): int {
