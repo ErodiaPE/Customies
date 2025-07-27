@@ -126,10 +126,10 @@ final class CustomiesItemFactory
      * @return void
      */
     public function overwriteVanillaComponents(
-        string            $className,
-        string            $identifier,
-        string            $name,
-        int               $typeId,
+        string $className,
+        string $identifier,
+        string $name,
+        int    $typeId,
     ): void
     {
         $item = new $className(new ItemIdentifier($typeId), $name);
